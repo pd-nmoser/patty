@@ -1,5 +1,5 @@
 package com.prodyna.academy.patty.domain;
 
-public class Folder {
+public class Folder extends Node{
 
 }

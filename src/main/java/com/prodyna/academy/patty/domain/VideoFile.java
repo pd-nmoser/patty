@@ -1,5 +1,5 @@
 package com.prodyna.academy.patty.domain;
 
-public class VideoFile {
+public class VideoFile extends File {
 
 }

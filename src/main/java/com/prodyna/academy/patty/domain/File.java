@@ -1,5 +1,5 @@
 package com.prodyna.academy.patty.domain;
 
-public class File {
+public class File extends Node {
 
 }
