@@ -16,17 +16,17 @@ public class Folder extends Node{
 		super.setName(name);
 	}
 	
-	void add(final Node node) {
+	public void add(final Node node) {
 		node.setParent(this);
 		children.add(node);
 	}
 	
-	void deleteChild(final Node node) {
+	public void deleteChild(final Node node) {
 		children.remove(node);
 	}
 	
 	@Override
-	void delete() {
+	public void delete() {
 		for (final Node child : children) {
 			child.delete();
 		}
@@ -36,7 +36,7 @@ public class Folder extends Node{
 	}
 	
 	@Override
-	List<Node> list() {
+	public List<Node> list() {
 		return new ArrayList<Node> (children);
 	}
 }

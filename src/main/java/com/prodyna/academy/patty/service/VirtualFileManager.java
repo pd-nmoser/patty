@@ -1,12 +1,16 @@
 /**
  * 
  */
-package com.prodyna.academy.patty.domain;
+package com.prodyna.academy.patty.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.prodyna.academy.patty.domain.FilesystemAbstractFactory;
+import com.prodyna.academy.patty.domain.Folder;
+import com.prodyna.academy.patty.domain.Node;
 
 /**
  * implements a file manager as a singleton.
@@ -115,6 +119,7 @@ public class VirtualFileManager implements FileManager {
 	@Override
 	public Node add(final Folder parent, final Node aNode) {
 		parent.add(aNode);
+		notifyObserver(parent);
 		return aNode;
 	}
 
@@ -124,6 +129,7 @@ public class VirtualFileManager implements FileManager {
 	@Override
 	public Node delete(final Node aNode) {
 		aNode.delete();
+		notifyObserver(aNode.getParent());
 		return aNode;
 	}
 
@@ -160,5 +166,15 @@ public class VirtualFileManager implements FileManager {
 		if(observerList != null) {
 			observerList.remove(aObserver);
 		}
+	}
+
+	@Override
+	public Node move(final Node aNode, final Folder newParent) {
+		final Folder oldParentFolder = aNode.getParent();
+		oldParentFolder.deleteChild(aNode);
+		
+		newParent.add(aNode);
+		
+		return aNode;
 	}
 }

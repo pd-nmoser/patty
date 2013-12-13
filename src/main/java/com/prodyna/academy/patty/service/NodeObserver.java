@@ -1,7 +1,9 @@
 /**
  * 
  */
-package com.prodyna.academy.patty.domain;
+package com.prodyna.academy.patty.service;
+
+import com.prodyna.academy.patty.domain.Node;
 
 /**
  * Interface for file observer

@@ -24,16 +24,16 @@ public abstract class Node {
 	void setSize(long size) {
 		this.size = size;
 	}
-	public Node getParent() {
+	public Folder getParent() {
 		return parent;
 	}
 	void setParent(Folder parent) {
 		this.parent = parent;
 	}
-	void delete() {
+	public void delete() {
 		
 	}
-	List<Node> list() {
+	public List<Node> list() {
 		return Collections.emptyList();
 	}
 }

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.prodyna.academy.patty.domain;
+package com.prodyna.academy.patty.service;
 
 /**
  * @author aheizenreder

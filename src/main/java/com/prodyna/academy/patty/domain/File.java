@@ -9,13 +9,13 @@ import java.util.List;
 public class File extends Node {
 	
 	@Override
-	void delete() {
+	public void delete() {
 		Folder parentFolder = (Folder) getParent();
 		parentFolder.deleteChild(this);
 	}
 	
 	@Override
-	List<Node> list() {
+	public List<Node> list() {
 		throw new UnsupportedOperationException();
 	}
 }
