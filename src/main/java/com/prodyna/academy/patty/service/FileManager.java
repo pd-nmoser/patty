@@ -31,4 +31,9 @@ public interface FileManager extends NodeObserver {
 	// observer management
 	void register(NodeObserver aObserver, Node aNode);
 	void unRegister(NodeObserver aObserver, Node aNode);
+
+	int getImageFileAmount(Node aNode);
+	int getFileAmount(Node aNode);
+
+	String findByFileName(Folder aNode, String fileName);
 }

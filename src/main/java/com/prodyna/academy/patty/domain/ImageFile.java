@@ -1,5 +1,7 @@
 package com.prodyna.academy.patty.domain;
 
+import com.prodyna.academy.patty.service.Visitor;
+
 /**
  * 
  * @author Martin Monshausen, PRODYNA AG
@@ -7,24 +9,33 @@ package com.prodyna.academy.patty.domain;
 public class ImageFile extends File {
 	private long height;
 	private long width;
-	
-	ImageFile(String name, long size, long height, long width) {
-		this.height = height; 
-		this.width = width; 
+
+	ImageFile(final String name, final long size, final long height,
+			final long width) {
+		this.height = height;
+		this.width = width;
 		super.setName(name);
 		super.setSize(size);
 	}
-	
+
 	public long getHeight() {
 		return height;
 	}
-	public void setHeight(long height) {
+
+	void setHeight(final long height) {
 		this.height = height;
 	}
+
 	public long getWidth() {
 		return width;
 	}
-	public void setWidth(long width) {
+
+	void setWidth(final long width) {
 		this.width = width;
+	}
+
+	@Override
+	public void accept(final Visitor visitor) {
+		visitor.visit(this);
 	}
 }

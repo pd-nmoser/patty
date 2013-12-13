@@ -177,4 +177,34 @@ public class VirtualFileManager implements FileManager {
 		
 		return aNode;
 	}
+	
+	@Override
+	public int getImageFileAmount(Node aNode) {
+		CountVisitor visitor = new CountVisitor();
+		visitor.setFilter(new ImageFilter());
+		
+		aNode.accept(visitor);
+		
+		return visitor.getCountResult();
+	}
+	
+	@Override
+	public int getFileAmount(Node aNode) {
+		CountVisitor visitor = new CountVisitor();
+		visitor.setFilter(new AllFileFilter());
+		
+		aNode.accept(visitor);
+		
+		return visitor.getCountResult();
+	}
+	
+	@Override
+	public String findByFileName(Folder aNode, String fileName) {
+		PrintVisitor visitor = new PrintVisitor();
+		visitor.setFilter(new FilenameFilter(fileName));
+		
+		aNode.accept(visitor);
+		
+		return visitor.getResultList();
+	}
 }
