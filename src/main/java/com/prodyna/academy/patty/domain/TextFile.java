@@ -4,6 +4,13 @@ public class TextFile extends File {
 	private String textEncoding;
 	private long pageCount;
 	
+	TextFile(String name, long size, String textEncoding, long pageCount) {
+		this.textEncoding = textEncoding;
+		this.pageCount = pageCount;
+		super.setName(name);
+		super.setSize(size);
+	}
+	
 	public String getTextEncoding() {
 		return textEncoding;
 	}

@@ -8,6 +8,10 @@ import java.util.Set;
 public class Folder extends Node{
 	private Set<Node> children = new HashSet<Node>();
 	
+	Folder(String name) {
+		super.setName(name);
+	}
+	
 	void add(Node node) {
 		children.add(node);
 	}

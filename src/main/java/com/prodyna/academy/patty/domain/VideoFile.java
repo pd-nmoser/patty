@@ -4,6 +4,13 @@ public class VideoFile extends File {
 	private long height;
 	private long width;
 	
+	VideoFile(String name, long size, long height, long width) {
+		this.height = height;
+		this.width = width;
+		super.setName(name);
+		super.setSize(size);
+	}
+	
 	public long getHeight() {
 		return height;
 	}
