@@ -1,5 +1,9 @@
 package com.prodyna.academy.patty.domain;
 
+/**
+ * 
+ * @author Martin Monshausen, PRODYNA AG
+ */
 public class ImageFile extends File {
 	private long height;
 	private long width;

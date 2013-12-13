@@ -5,6 +5,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * 
+ * @author Martin Monshausen, PRODYNA AG
+ */
 public class Folder extends Node{
 	private final Set<Node> children = new HashSet<Node>();
 	
@@ -31,6 +35,7 @@ public class Folder extends Node{
 		parentFolder.deleteChild(this);
 	}
 	
+	@Override
 	List<Node> list() {
 		return new ArrayList<Node> (children);
 	}

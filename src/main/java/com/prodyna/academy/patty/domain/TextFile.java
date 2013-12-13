@@ -1,5 +1,9 @@
 package com.prodyna.academy.patty.domain;
 
+/**
+ * 
+ * @author Martin Monshausen, PRODYNA AG
+ */
 public class TextFile extends File {
 	private String textEncoding;
 	private long pageCount;

@@ -14,13 +14,16 @@ public interface FileManager extends NodeObserver {
 	public Folder getRoot();
 	
 	// structure methods
-	public Node newNode(FileType fType);
+	Node newTextFileNode(FileType fType, String name, long size,
+			String textEncoding, long pageCount) throws UnsupportedFileType;
+	Node newMediaFileNode(FileType fType, String name, long size, long height,
+			long width) throws UnsupportedFileType;
+	Node newFolderNode(FileType fType, String name) throws UnsupportedFileType;
 	public Node add(Folder parent, Node aNode);
 	public Node delete(Node aNode);
 	public List<Node> list(Node aNode);
 	
 	// observer management
-	public void register(NodeObserver aObserver, Node aNode);
-	public void unRegister(NodeObserver aObserver);
-	
+	void register(NodeObserver aObserver, Node aNode);
+	void unRegister(NodeObserver aObserver, Node aNode);
 }

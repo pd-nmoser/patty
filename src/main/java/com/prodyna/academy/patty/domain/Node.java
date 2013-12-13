@@ -1,5 +1,12 @@
 package com.prodyna.academy.patty.domain;
 
+import java.util.Collections;
+import java.util.List;
+
+/**
+ * 
+ * @author Martin Monshausen, PRODYNA AG
+ */
 public abstract class Node {
 	private String name;
 	private long size;
@@ -25,5 +32,8 @@ public abstract class Node {
 	}
 	void delete() {
 		
+	}
+	List<Node> list() {
+		return Collections.emptyList();
 	}
 }

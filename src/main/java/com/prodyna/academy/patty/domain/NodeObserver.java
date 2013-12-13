@@ -11,5 +11,5 @@ package com.prodyna.academy.patty.domain;
  */
 public interface NodeObserver {
 
-	public void notifyObserver();
+	void notifyObserver(Node aNode);
 }
