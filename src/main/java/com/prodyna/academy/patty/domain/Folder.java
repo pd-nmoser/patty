@@ -6,18 +6,29 @@ import java.util.List;
 import java.util.Set;
 
 public class Folder extends Node{
-	private Set<Node> children = new HashSet<Node>();
+	private final Set<Node> children = new HashSet<Node>();
 	
-	Folder(String name) {
+	Folder(final String name) {
 		super.setName(name);
 	}
 	
-	void add(Node node) {
+	void add(final Node node) {
+		node.setParent(this);
 		children.add(node);
 	}
 	
-	void delete(Node node) {
+	void deleteChild(final Node node) {
 		children.remove(node);
+	}
+	
+	@Override
+	void delete() {
+		for (final Node child : children) {
+			child.delete();
+		}
+		
+		final Folder parentFolder = (Folder) getParent();
+		parentFolder.deleteChild(this);
 	}
 	
 	List<Node> list() {

@@ -6,19 +6,19 @@ package com.prodyna.academy.patty.domain;
  */
 public class FilesystemAbstractFactory {
 	
-	public Folder createFolder(String name) {
+	public static Folder createFolder(String name) {
 		return new Folder(name);
 	}
 	
-	public ImageFile createImageFile(String name, long size, long height, long width) {
+	public static ImageFile createImageFile(String name, long size, long height, long width) {
 		return new ImageFile(name, size, height, width);
 	}
 	
-	public TextFile createTextFile(String name, long size, String textEncoding, long pageCount) {
+	public static TextFile createTextFile(String name, long size, String textEncoding, long pageCount) {
 		return new TextFile(name, size, textEncoding, pageCount);
 	}
 	
-	public VideoFile createVideoFile(String name, long size, long height, long width) {
+	public static VideoFile createVideoFile(String name, long size, long height, long width) {
 		return new VideoFile(name,size,height,width);
 	}
 }
