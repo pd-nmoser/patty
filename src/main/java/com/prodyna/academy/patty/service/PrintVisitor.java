@@ -13,10 +13,17 @@ import com.prodyna.academy.patty.domain.VideoFile;
  * 
  * @author Martin Monshausen, PRODYNA AG
  */
+/**
+ * @author aheizenreder
+ *
+ */
 public class PrintVisitor implements Visitor {
 	private Filter filter;
 	private StringBuffer resultBuffer;
 
+	/** 
+	 * print informations to a image file matched to the filter.
+	 */
 	@Override
 	public void visit(ImageFile file) {
 		if(filter.matches(file)) {
@@ -33,7 +40,9 @@ public class PrintVisitor implements Visitor {
 		}
 	}
 
-	@Override
+	/** 
+	 * print informations to a text file matched to the filter.
+	 */
 	public void visit(TextFile file) {
 		if(filter.matches(file)) {
 			String parentFolder = file.getParent().getName();
@@ -50,7 +59,9 @@ public class PrintVisitor implements Visitor {
 		}
 	}
 
-	@Override
+	/** 
+	 * print informations to a video file matched to the filter.
+	 */
 	public void visit(VideoFile file) {
 		if(filter.matches(file)) {
 			String parentFolder = file.getParent().getName();
@@ -66,7 +77,10 @@ public class PrintVisitor implements Visitor {
 		}
 	}
 
-	@Override
+	
+	/**
+	 * 
+	 */
 	public void visit(Folder folder) {
 		Set<Node> children = folder.getChildren();
 		for (Node node : children) {
