@@ -1,6 +1,9 @@
 package com.prodyna.academy.patty.api;
 
-public interface Node {
+import com.prodyna.academy.patty.api.observer.NodeObservable;
+import com.prodyna.academy.patty.api.visitor.NodeVisitor;
+
+public interface Node extends NodeObservable {
 
 	String getUuid();
 
@@ -10,4 +13,5 @@ public interface Node {
 
 	int getSize();
 
+	void accept(NodeVisitor visitor);
 }

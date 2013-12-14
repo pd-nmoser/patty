@@ -3,14 +3,25 @@ package com.prodyna.academy.patty.vfs;
 import com.prodyna.academy.patty.api.FileSystem;
 import com.prodyna.academy.patty.api.Folder;
 import com.prodyna.academy.patty.api.Node;
+import com.prodyna.academy.patty.api.observer.NodeChangeListener;
+import com.prodyna.academy.patty.api.observer.NodeObserver;
+import com.prodyna.academy.patty.api.observer.NodeRenameListener;
+import com.prodyna.academy.patty.api.observer.OberverSupport;
+import com.prodyna.academy.patty.api.observer.NodeObservable;
+import com.prodyna.academy.patty.api.observer.event.NodeChangeEvent;
+import com.prodyna.academy.patty.api.observer.event.NodeRenameEvent;
 
-public class VfsFileSystem implements FileSystem {
+public class VfsFileSystem implements FileSystem, NodeChangeListener, NodeRenameListener, NodeObservable {
 
 	private final VfsFolder root;
 
+	private OberverSupport oberverSupport = new OberverSupport();
+
 	public VfsFileSystem() {
 		root = new VfsFolder();
-		root.setName("");
+		root.setName("/");
+
+		root.registerListener(this);
 	}
 
 	@Override
@@ -22,6 +33,8 @@ public class VfsFileSystem implements FileSystem {
 	public void add(Folder f, Node n) {
 		VfsNode node = (VfsNode) n;
 		node.setParent(f);
+
+		node.registerListener(this);
 	}
 
 	@Override
@@ -42,6 +55,26 @@ public class VfsFileSystem implements FileSystem {
 	public void delete(Node n) {
 		VfsFolder parent = (VfsFolder) n.getParent();
 		parent.getChildren().remove(n);
+	}
+
+	@Override
+	public void registerListener(NodeObserver listener) {
+		oberverSupport.addListener(listener);
+	}
+
+	@Override
+	public void unregisterListener(NodeObserver listener) {
+		oberverSupport.removeListener(listener);
+	}
+
+	@Override
+	public void nodeChange(NodeChangeEvent event) {
+		oberverSupport.fireChangeEvent(event);
+	}
+
+	@Override
+	public void nodeRenamed(NodeRenameEvent event) {
+		oberverSupport.fireRenameEvent(event);
 	}
 
 }

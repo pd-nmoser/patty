@@ -4,7 +4,9 @@ import java.util.UUID;
 
 import com.prodyna.academy.patty.api.Folder;
 import com.prodyna.academy.patty.api.Node;
-import com.prodyna.academy.patty.vfs.visitor.VfsVisitor;
+import com.prodyna.academy.patty.api.observer.NodeObserver;
+import com.prodyna.academy.patty.api.observer.OberverSupport;
+import com.prodyna.academy.patty.api.visitor.NodeVisitor;
 
 public abstract class VfsNode implements Node, Comparable<VfsNode> {
 
@@ -14,6 +16,8 @@ public abstract class VfsNode implements Node, Comparable<VfsNode> {
 
 	private Folder parent;
 
+	protected OberverSupport oberverSupport = new OberverSupport();
+
 	public abstract int getSize();
 
 	public String getName() {
@@ -21,6 +25,9 @@ public abstract class VfsNode implements Node, Comparable<VfsNode> {
 	}
 
 	void setName(String name) {
+
+		oberverSupport.fireRenameEvent(this, this.name, name);
+
 		this.name = name;
 	}
 
@@ -38,7 +45,7 @@ public abstract class VfsNode implements Node, Comparable<VfsNode> {
 		folder.getChildren().add(this);
 	}
 
-	public void accept(VfsVisitor visitor) {
+	public void accept(NodeVisitor visitor) {
 		visitor.visit(this);
 	}
 
@@ -70,6 +77,21 @@ public abstract class VfsNode implements Node, Comparable<VfsNode> {
 	@Override
 	public int compareTo(VfsNode o) {
 		return this.uuid.compareTo(o.uuid);
+	}
+
+	@Override
+	public String toString() {
+		return this.getName();
+	}
+
+	@Override
+	public void registerListener(NodeObserver listener) {
+		oberverSupport.addListener(listener);
+	}
+
+	@Override
+	public void unregisterListener(NodeObserver listener) {
+		oberverSupport.removeListener(listener);
 	}
 
 }

@@ -1,6 +1,8 @@
 package com.prodyna.academy.patty.api;
 
-public interface FileSystem {
+import com.prodyna.academy.patty.api.observer.NodeObservable;
+
+public interface FileSystem extends NodeObservable {
 
 	Folder getRoot();
 

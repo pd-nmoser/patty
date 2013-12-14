@@ -1,9 +1,9 @@
-package com.prodyna.academy.patty.vfs.visitor;
+package com.prodyna.academy.patty.api.visitor;
 
 import com.prodyna.academy.patty.vfs.VfsFolder;
 import com.prodyna.academy.patty.vfs.VfsNode;
 
-public interface VfsVisitor {
+public interface NodeVisitor {
 
 	void visit(VfsNode node);
 
