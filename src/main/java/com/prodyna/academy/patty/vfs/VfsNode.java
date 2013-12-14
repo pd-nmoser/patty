@@ -6,6 +6,7 @@ import com.prodyna.academy.patty.api.Folder;
 import com.prodyna.academy.patty.api.Node;
 import com.prodyna.academy.patty.api.observer.NodeObserver;
 import com.prodyna.academy.patty.api.observer.OberverSupport;
+import com.prodyna.academy.patty.api.observer.event.NodeChangeType;
 import com.prodyna.academy.patty.api.visitor.NodeVisitor;
 
 public abstract class VfsNode implements Node, Comparable<VfsNode> {
@@ -15,6 +16,8 @@ public abstract class VfsNode implements Node, Comparable<VfsNode> {
 	private String name;
 
 	private Folder parent;
+
+	private boolean exist = true;
 
 	protected OberverSupport oberverSupport = new OberverSupport();
 
@@ -40,9 +43,20 @@ public abstract class VfsNode implements Node, Comparable<VfsNode> {
 	}
 
 	void setParent(Folder parent) {
+
+		oberverSupport.fireChangeEvent(this, NodeChangeType.MOVE);
+
 		this.parent = parent;
 		VfsFolder folder = (VfsFolder) parent;
 		folder.getChildren().add(this);
+	}
+
+	public boolean exists() {
+		return exist;
+	}
+
+	public void setExist(boolean exist) {
+		this.exist = exist;
 	}
 
 	public void accept(NodeVisitor visitor) {

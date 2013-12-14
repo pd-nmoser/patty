@@ -5,6 +5,7 @@ import java.util.Set;
 
 import com.prodyna.academy.patty.api.Node;
 import com.prodyna.academy.patty.api.observer.event.NodeChangeEvent;
+import com.prodyna.academy.patty.api.observer.event.NodeChangeType;
 import com.prodyna.academy.patty.api.observer.event.NodeRenameEvent;
 
 public final class OberverSupport {
@@ -19,8 +20,8 @@ public final class OberverSupport {
 		this.listenerSet.remove(listener);
 	}
 
-	public void fireChangeEvent(Node source) {
-		fireChangeEventInternal(new NodeChangeEvent(source));
+	public void fireChangeEvent(Node source, NodeChangeType type) {
+		fireChangeEventInternal(new NodeChangeEvent(source, type));
 	}
 
 	public void fireChangeEvent(NodeChangeEvent event) {

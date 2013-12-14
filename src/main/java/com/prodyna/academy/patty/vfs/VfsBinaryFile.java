@@ -1,5 +1,6 @@
 package com.prodyna.academy.patty.vfs;
 
+import com.prodyna.academy.patty.api.observer.event.NodeChangeType;
 import com.prodyna.academy.patty.api.visitor.NodeVisitor;
 
 public abstract class VfsBinaryFile extends VfsFile {
@@ -18,7 +19,7 @@ public abstract class VfsBinaryFile extends VfsFile {
 	void setContent(byte[] content) {
 		this.content = content;
 
-		oberverSupport.fireChangeEvent(this);
+		oberverSupport.fireChangeEvent(this, NodeChangeType.UPDATE);
 	}
 
 	public void accept(NodeVisitor visitor) {

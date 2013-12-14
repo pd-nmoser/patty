@@ -9,6 +9,7 @@ import com.prodyna.academy.patty.api.observer.NodeRenameListener;
 import com.prodyna.academy.patty.api.observer.OberverSupport;
 import com.prodyna.academy.patty.api.observer.NodeObservable;
 import com.prodyna.academy.patty.api.observer.event.NodeChangeEvent;
+import com.prodyna.academy.patty.api.observer.event.NodeChangeType;
 import com.prodyna.academy.patty.api.observer.event.NodeRenameEvent;
 
 public class VfsFileSystem implements FileSystem, NodeChangeListener, NodeRenameListener, NodeObservable {
@@ -35,16 +36,20 @@ public class VfsFileSystem implements FileSystem, NodeChangeListener, NodeRename
 		node.setParent(f);
 
 		node.registerListener(this);
+
+		oberverSupport.fireChangeEvent(n, NodeChangeType.CREATE);
 	}
 
 	@Override
 	public void rename(Node n, String name) {
+		checkExistence(n);
 		VfsNode node = (VfsNode) n;
 		node.setName(name);
 	}
 
 	@Override
 	public void move(Node n, Folder target) {
+		checkExistence(n);
 		VfsFolder parent = (VfsFolder) n.getParent();
 		parent.getChildren().remove(n);
 		VfsNode node = (VfsNode) n;
@@ -53,8 +58,21 @@ public class VfsFileSystem implements FileSystem, NodeChangeListener, NodeRename
 
 	@Override
 	public void delete(Node n) {
+		checkExistence(n);
+
 		VfsFolder parent = (VfsFolder) n.getParent();
 		parent.getChildren().remove(n);
+
+		VfsNode node = (VfsNode) n;
+		node.setExist(false);
+
+		oberverSupport.fireChangeEvent(n, NodeChangeType.DELETE);
+	}
+
+	private void checkExistence(Node n) {
+		if (!n.exists()) {
+			throw new IllegalStateException("File does not exist!");
+		}
 	}
 
 	@Override

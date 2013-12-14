@@ -5,6 +5,8 @@ import com.prodyna.academy.patty.api.visitor.NodeVisitor;
 
 public interface Node extends NodeObservable {
 
+	boolean exists();
+	
 	String getUuid();
 
 	Folder getParent();

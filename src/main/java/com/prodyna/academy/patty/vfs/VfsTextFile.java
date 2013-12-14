@@ -1,6 +1,7 @@
 package com.prodyna.academy.patty.vfs;
 
 import com.prodyna.academy.patty.api.TextFile;
+import com.prodyna.academy.patty.api.observer.event.NodeChangeType;
 import com.prodyna.academy.patty.api.visitor.NodeVisitor;
 
 public class VfsTextFile extends VfsFile implements TextFile {
@@ -33,14 +34,14 @@ public class VfsTextFile extends VfsFile implements TextFile {
 		this.content = content;
 		this.charset = charset;
 
-		oberverSupport.fireChangeEvent(this);
+		oberverSupport.fireChangeEvent(this, NodeChangeType.UPDATE);
 	}
 
 	public void setContent(String content) {
 		this.content = content;
 		this.charset = "UTF-8";
 
-		oberverSupport.fireChangeEvent(this);
+		oberverSupport.fireChangeEvent(this, NodeChangeType.UPDATE);
 	}
 
 	public void accept(NodeVisitor visitor) {
