@@ -18,7 +18,7 @@ public abstract class VfsBinaryFile extends VfsFile {
 	void setContent(byte[] content) {
 		this.content = content;
 	}
-	
+
 	public void accept(VfsVisitor visitor) {
 		visitor.visit(this);
 	}

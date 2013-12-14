@@ -10,7 +10,7 @@ import com.prodyna.academy.patty.vfs.visitor.VfsVisitor;
 
 public class VfsFolder extends VfsNode implements Folder {
 
-	private SortedSet<VfsNode> children = new TreeSet<>();
+	private SortedSet<VfsNode> children = new TreeSet<VfsNode>();
 
 	VfsFolder() {
 
@@ -35,7 +35,7 @@ public class VfsFolder extends VfsNode implements Folder {
 
 	@Override
 	public SortedSet<File> listFiles() {
-		SortedSet<File> out = new TreeSet<>();
+		SortedSet<File> out = new TreeSet<File>();
 		for (VfsNode node : children) {
 			if (node instanceof File) {
 				out.add((File) node);

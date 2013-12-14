@@ -5,7 +5,7 @@ import com.prodyna.academy.patty.vfs.VfsFileSystem;
 
 public class FileManager {
 
-	private static FileManager FILE_MANAGER = new FileManager();
+	private static final FileManager FILE_MANAGER = new FileManager();
 
 	private FileFactory fileFactory;
 
