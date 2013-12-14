@@ -18,4 +18,10 @@ public class File extends Node {
 	public List<Node> list() {
 		throw new UnsupportedOperationException();
 	}
+
+	@Override
+	public String toString() {
+		return "File [getName()=" + getName() + "]";
+	}
+	
 }
